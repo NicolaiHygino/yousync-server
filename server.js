@@ -12,13 +12,16 @@ io.on('connection', socket => {
     socket.join(values.room);
   });
 
-  socket.on('play', () => {
-    console.log('play event');
-    socket.to(socket.data.room).emit('play');
-  });
+  // socket.on('play', () => {
+  //   socket.to(socket.data.room).emit('play');
+  // });
 
-  socket.on('pause', () => {
-    console.log('pause event');
-    socket.to(socket.data.room).emit('pause');
-  })
+  // socket.on('pause', () => {
+  //   socket.to(socket.data.room).emit('pause');
+  // });
+
+  socket.on('stateChange', state => {
+    console.log('event fired');
+    socket.to(socket.data.room).emit('stateChange', state);
+  });
 });
